@@ -1,0 +1,186 @@
+=?what you can conclude about a ? i. a+b ii. a(+b)
+
+In (a+b) a is a variable
+In a(+b) a is a function name with parameter +b
+
+
+=>write a one line ruby code to swap two variables .
+
+def swap(a,b); a=a+b; b=a-b; a=a-b; puts a; puts b; end; swap(4,5)
+
+=>Refactor the following code !
+
+a. if !tweets.empty? tweets = Timeline.new("Horrah ! finally I am on tweeter .") puts tweets else puts "No tweets for you !" end
+
+unless tweets.empty
+  tweets = Timeline.new("Horrah ! finally I am on tweeter")
+  puts tweets
+else
+  puts "No Tweets for you"
+end
+
+
+=>create a ruby class and it's instances , and print the total no of instances.
+
+class TestClass
+  @@count_of_instances=0
+  def initialize(place)
+    @name = place 
+    @@count_of_instances += 1
+  end
+  def what_are_you_doing(name)
+    if @name=="office"
+      puts "#{name} is learning Ruby at #{@name}"
+    else
+      puts "#{name} is sleeping at #{@name}"
+    end
+  end
+  def self.tell_me_instance_count
+    puts "There are #{@@count_of_instances} instances"
+  end
+end
+
+office = TestClass.new("office")
+home = TestClass.new("Home")
+home.what_are_you_doing("Ram")
+office.what_are_you_doing("Raj")
+TestClass.tell_me_instance_count
+
+
+
+
+=>what is self in ruby and show it's usage by sample ruby code .
+
+
+Self Refers to Current object in Ruby.In following example i have used self to call another method using the object
+
+#!/usr/local/bin/ruby -w
+
+class TestClass
+  
+  @@count_of_instances=0
+  def initialize(place)
+    @name = place 
+    @@count_of_instances += 1
+    
+  end
+  def what_are_you_doing(name)
+    if @name=="office"
+      puts "#{name} is learning Ruby at #{@name}"
+      self.go_home(name)
+    else
+      puts "#{name} is sleeping at #{@name}"
+      
+    end
+  end
+  def go_home(name)
+    @name="home"    
+    self.what_are_you_doing(name)
+  end
+  def self.tell_me_instance_count
+    puts "There are #{@@count_of_instances} instances"
+    
+  end
+end
+
+office = TestClass.new("office")
+home = TestClass.new("Home")
+home.what_are_you_doing("Ram")
+office.what_are_you_doing("Raj")
+TestClass.tell_me_instance_count
+
+
+=>Write a ruby code using yeild .
+
+#!/usr/local/bin/ruby -w
+
+def going_to_use_yield
+  yield 10,30,40,20
+end
+
+going_to_use_yield { |a,b,c,d| puts (a+b+c+d)/4}
+  
+
+#Example 2
+
+#!/usr/local/bin/ruby -w
+
+def going_to_use_yield(array)
+  ans = 0
+  array.each do |n|
+    ans+=n
+  end
+  yield ans
+end
+
+going_to_use_yield [10,20,30,40] do |n| puts n end
+  
+
+=>OOP Challenge
+
+module Calculate
+  SALE_TAX_PERCENT = 0.10
+  def Calculate.final_sale_price(price)
+    if price == 0
+      raise "Enter a New price and Check Final Sale PRice again"
+    end
+    final_price = price + (price * SALE_TAX_PERCENT)
+    puts "Final Price is #{final_price}"
+    rescue Exception => e
+     puts e.message
+  end
+end
+
+
+module Task
+  class Book
+    attr_accessor :id,:name,:price
+    include Calculate
+    @@count_of_books = 0
+    @@instance_collector = []
+    def initialize(price = 100,name="something")  
+      @@instance_collector << self
+      @id = @@count_of_books    
+      @name = name
+      @@count_of_books +=1
+      @price = price
+      Calculate.final_sale_price(@price)    
+    end
+    def self.search_for(book_to_be_searched)    
+      @@instance_collector.each do |book_object|
+        if book_object.name.downcase == book_to_be_searched.downcase        
+          puts "The cost price of the book #{book_object.name}  is #{book_object.price}"
+          return
+        end  
+      end
+      puts "Book Not Available"
+    end
+    
+        
+  end 
+  
+  class Edition < Book
+    attr_accessor :edition
+    def initialize(price,name,edition=1)
+      super(price,name)
+      @edition = edition
+      
+    end  
+    
+    def self.printBooks
+      @@instance_collector.each do |book_object|
+        puts "Id : #{book_object.id} "
+        puts "Price : #{book_object.price}"
+        puts "Name : #{book_object.name}"
+        puts book_object.edition ? "Edition : #{book_object.edition}" : "This is the first Edition"
+      end
+    end
+  end
+end
+
+Task::Edition.new(200,"Quants")
+
+Task::Edition.new(100,"Q2",2)
+
+Task::Edition.printBooks
+
