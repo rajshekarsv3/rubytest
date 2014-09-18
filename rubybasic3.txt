@@ -4,7 +4,8 @@ a. if !tweets.empty? tweets = Timeline.new("Horrah ! finally I am on tweeter .")
 
 unless tweets.empty
   tweets = Timeline.new("Horrah ! finally I am on tweeter")
-    puts tweets
-    else
-      puts "No Tweets for you"
-      end
+  puts tweets
+else
+  puts "No Tweets for you"
+end
+

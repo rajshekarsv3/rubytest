@@ -5,36 +5,40 @@ Self Refers to Current object in Ruby.In following example i have used self to c
 
 #!/usr/local/bin/ruby -w
 
+#!/usr/local/bin/ruby -w
+
 class TestClass
   
-    @@count_of_instances=0
-      def initialize(place)
-          @name = place 
-	      @@count_of_instances += 1
-	          
-		    end
-		      def what_are_you_doing(name)
-		          if @name=="office"
-			        puts "#{name} is learning Ruby at #{@name}"
-				      self.go_home(name)
-				          else
-					        puts "#{name} is sleeping at #{@name}"
-						      
-						          end
-							    end
-							      def go_home(name)
-							          @name="home"    
-								      self.what_are_you_doing(name)
-								        end
-									  def self.tell_me_instance_count
-									      puts "There are #{@@count_of_instances} instances"
-									          
-										    end
-										    end
+  @@count_of_instances=0
+  def initialize(place)
+    @name = place 
+    @@count_of_instances += 1
+    
+  end
+  def what_are_you_doing(name)
+    if @name=="office"
+      puts "#{name} is learning Ruby at #{@name}"
+      self.go_home(name)
+    else
+      puts "#{name} is sleeping at #{@name}"
+      
+    end
+  end
+  def go_home(name)
+    @name="home"    
+    self.what_are_you_doing(name)
+  end
+  def self.tell_me_instance_count
+    puts "There are #{@@count_of_instances} instances"
+    
+  end
+end
 
-										    office = TestClass.new("office")
-										    home = TestClass.new("Home")
-										    home.what_are_you_doing("Ram")
-										    office.what_are_you_doing("Raj")
-										    TestClass.tell_me_instance_count
+office = TestClass.new("office")
+home = TestClass.new("Home")
+home.what_are_you_doing("Ram")
+office.what_are_you_doing("Raj")
+TestClass.tell_me_instance_count
+
+
 
