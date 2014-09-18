@@ -1,0 +1,25 @@
+ ruby code using yeild .
+
+ #!/usr/local/bin/ruby -w
+
+ def going_to_use_yield
+   yield 10,30,40,20
+   end
+
+   going_to_use_yield { |a,b,c,d| puts (a+b+c+d)/4}
+     
+
+     #Example 2
+
+     #!/usr/local/bin/ruby -w
+
+     def going_to_use_yield(array)
+       ans = 0
+         array.each do |n|
+	     ans+=n
+	       end
+	         yield ans
+		 end
+
+		 going_to_use_yield [10,20,30,40] do |n| puts n end
+

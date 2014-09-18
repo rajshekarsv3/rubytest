@@ -1,0 +1,10 @@
+Refactor the following code !
+
+a. if !tweets.empty? tweets = Timeline.new("Horrah ! finally I am on tweeter .") puts tweets else puts "No tweets for you !" end
+
+unless tweets.empty
+  tweets = Timeline.new("Horrah ! finally I am on tweeter")
+    puts tweets
+    else
+      puts "No Tweets for you"
+      end

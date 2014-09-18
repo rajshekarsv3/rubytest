@@ -1,0 +1,26 @@
+te a ruby class and it's instances , and print the total no of instances.
+
+class TestClass
+  @@count_of_instances=0
+    def initialize(place)
+        @name = place 
+	    @@count_of_instances += 1
+	      end
+	        def what_are_you_doing(name)
+		    if @name=="office"
+		          puts "#{name} is learning Ruby at #{@name}"
+			      else
+			            puts "#{name} is sleeping at #{@name}"
+				        end
+					  end
+					    def self.tell_me_instance_count
+					        puts "There are #{@@count_of_instances} instances"
+						  end
+						  end
+
+						  office = TestClass.new("office")
+						  home = TestClass.new("Home")
+						  home.what_are_you_doing("Ram")
+						  office.what_are_you_doing("Raj")
+						  TestClass.tell_me_instance_count
+

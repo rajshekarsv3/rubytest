@@ -1,0 +1,4 @@
+what you can conclude about a ? i. a+b ii. a(+b)
+
+In (a+b) a is a variable
+In a(+b) a is a function name with parameter +b
