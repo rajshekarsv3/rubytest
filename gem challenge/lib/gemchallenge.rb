@@ -1,16 +1,8 @@
 class Gemchallenge
-def self.filter_number(array,type)
+def self.filter_number(array)
   array.each do |n|
-  	if type=="even"
-  		remainder=0
-  	elsif type=="odd"
-  		remainder=1
-  	else
-  		puts "Second Argument should be odd or even" 
-  		return
-  	end
-    if n%2==remainder 
-    	yield n 
+    if(yield(n))
+      puts n
     end
   end
 end
